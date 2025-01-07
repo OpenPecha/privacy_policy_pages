@@ -1,23 +1,22 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import Policy from './components/Privacy_Policy';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router basename={'/privacy_policy_pages'}>
+    <Routes>
+      <Route exact path="/privacy_policy_pages" element={<div >hi</div>} />
+      <Route path="/:dynamicName" element={<DynamicPage />} />
+    </Routes>
+  </Router>
   );
 }
+
+function DynamicPage() {
+  const { dynamicName } = useParams();
+  return <Policy productName={dynamicName}/>;
+}
+
 
 export default App;
