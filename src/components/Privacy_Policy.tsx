@@ -1,7 +1,8 @@
-import React from 'react';
 import Markdown from 'react-markdown';
+import { useParams } from 'react-router-dom';
 
-function Policy({ productName }) {
+function Policy() {
+    const { productName } = useParams();
     const markdown = `
 # Privacy Policy for ${productName}
 Last Updated: 16/10/2024
