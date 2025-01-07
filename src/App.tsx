@@ -1,13 +1,15 @@
-import {  Routes, Route } from "react-router-dom";
-import DynamicPage from "./components/Privacy_Policy"; // Component to handle dynamic routes
+
+import './App.css'
+import { Outlet } from 'react-router-dom'
 
 function App() {
+
   return (
-      <Routes>
-        {/* <Route index path="/" element={<div>hi</div>} /> */}
-        <Route path="/:productName" element={<DynamicPage />} />
-      </Routes>
-  );
+    <>
+    hi
+      <Outlet/>
+    </>
+  )
 }
 
-export default App;
+export default App
