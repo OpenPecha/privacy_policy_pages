@@ -6,11 +6,11 @@ import Policy from './components/Privacy_Policy.tsx'
 
 const router = createBrowserRouter([
   {
-    path: "/privacy_policy_pages/",
+    path: "/",
     element: <App />,
     children: [
       {
-        path: "/privacy_policy_pages/:productName",
+        path: "/:productName",
         element: <Policy/>,
       }
     ],
