@@ -1,20 +1,22 @@
 {
-  "homepage": "https://openpecha.github.io/privacy_policy_pages/",
+  "homepage": "http://dev.openpecha.org/privacy_policy_pages",
   "name": "privacy_policy_pages",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.3",
     "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
