@@ -1,5 +1,5 @@
 {
-  "homepage": "https://openpecha.github.io/privacy_policy_pages",
+  "homepage": "https://OpenPecha.github.io/privacy_policy_pages/",
   "name": "privacy_policies",
   "version": "0.1.0",
   "private": false,
@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
