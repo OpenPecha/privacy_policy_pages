@@ -16,6 +16,8 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: '18' # or your required version
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -26,9 +28,8 @@ jobs:
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3.1.3
         with:
-            name: production-files
-            path: ./dist
-
+          name: production-files
+          path: ./dist
 
   deploy:
     name: Deploy
@@ -37,12 +38,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      - name: Checkout repo (needed for gh-pages action to detect repo)
+        uses: actions/checkout@v3
+
       - name: Download artifact
         uses: actions/download-artifact@v3.1.3
         with:
           name: production-files
           path: ./dist
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
