@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // List of OpenPecha products with custom colors
 const products = [
@@ -12,17 +12,39 @@ const products = [
 ];
 
 function Home() {
+  const [greeting, setGreeting] = useState('');
+
   useEffect(() => {
     // Update document title
     document.title = 'OpenPecha - Privacy Policies';
+    
+    // Set greeting based on time of day
+    const hour = new Date().getHours();
+    let timeGreeting = '';
+    
+    if (hour < 12) {
+      timeGreeting = 'Good morning';
+    } else if (hour < 18) {
+      timeGreeting = 'Good afternoon';
+    } else {
+      timeGreeting = 'Good evening';
+    }
+    
+    setGreeting(timeGreeting);
   }, []);
 
   return (
     <div className="home-container">
+      <div className="welcome-banner">
+        <div className="welcome-text">{greeting}!</div>
+        <div className="welcome-subtitle">Welcome to OpenPecha</div>
+      </div>
+      
       <div className="hero-section">
         <div className="gradient-text">OpenPecha Privacy Policies</div>
         <p className="hero-description">
-          At OpenPecha, we value your privacy. Select a product below to view its privacy policy.
+          At OpenPecha, we value your privacy and are committed to protecting your personal information.
+          Select a product below to view its detailed privacy policy.
         </p>
       </div>
 
