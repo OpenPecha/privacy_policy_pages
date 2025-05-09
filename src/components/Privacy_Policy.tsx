@@ -1,11 +1,35 @@
 import Markdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+
+// Product color mapping
+const productColors = {
+  MonlamDictionary: '#6366f1', // Indigo
+  MonlamGrandTibetan: '#ec4899', // Pink
+  MonlamTibetanChinese: '#f59e0b', // Amber
+  MonlamBodEng: '#10b981', // Emerald
+  MonlamBoEng: '#8b5cf6', // Violet
+  MonlamTibetanKeyboard: '#0ea5e9', // Sky
+  // Default color if product not found
+  default: '#6366f1'
+};
 
 function Policy() {
     const { productName } = useParams();
+    
+    useEffect(() => {
+        // Scroll to top when component mounts
+        window.scrollTo(0, 0);
+        
+        // Update document title with product name
+        document.title = `Privacy Policy - ${productName}`;
+    }, [productName]);
+    
+    // Get color for this product or use default
+    const productColor = productName ? (productColors[productName as keyof typeof productColors] ?? productColors.default) : productColors.default;
+    
     const markdown = `
 # Privacy Policy for ${productName}
-Last Updated: 16/10/2024
 
 ## Introduction
 ${productName} ("we," "us," or "our") respects your privacy and is committed to protecting your personal information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you use our mobile application, ${productName} ("the App"), available on Android and iOS platforms.
@@ -24,7 +48,7 @@ We may collect device information, such as your IP address, operating system, an
 
 ## 2. How We Use Your Information
 - **Enhance User Experience:** To personalize the App and provide relevant dictionary content and resources.
-- **Improve Services:** To monitor performance, analyze usage trends, and improve the App’s features.
+- **Improve Services:** To monitor performance, analyze usage trends, and improve the App's features.
 - **Security and Support:** To safeguard data and respond to user queries or feedback.
 
 ## 3. Disclosure of Your Information
@@ -61,12 +85,21 @@ For questions or concerns regarding this Privacy Policy or our data practices, p
 Email: tech@monlam.ai  
 Address: ${productName}, Jogiwara Rd, near Tibetan Mentsee Khang, Upmuhal, Dharamshala, Himachal Pradesh 176215
 
-...
-
 This policy provides a straightforward overview of data practices for the ${productName} app, with privacy, security, and user rights prioritized.
     `;
 
-    return <Markdown>{markdown}</Markdown>;
+    return (
+        <div className="policy-container" style={{ borderTop: `6px solid ${productColor}` }}>
+            <div className="policy-title-container" style={{ background: `linear-gradient(135deg, ${productColor}20, ${productColor}05)` }}>
+                <h1 className="policy-title" style={{ color: productColor }}>
+                    Privacy Policy for {productName}
+                </h1>
+            </div>
+            <div className="policy-content">
+                <Markdown>{markdown}</Markdown>
+            </div>
+        </div>
+    );
 }
 
 export default Policy;
